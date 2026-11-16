@@ -7,7 +7,7 @@ export const site = {
   headline: "AI Engineer | Robotics & Computer Vision Enthusiast",
   role: "AI Engineer",
   // Change to your final domain before deploying (used for SEO / sitemap).
-  url: "https://arpitha-co.github.io",
+  url: "https://arpitha-thimmegowda.vercel.app",
   description:
     "Arpitha Thimmegowda is an AI Engineer working on vision-language-action models for robotic manipulation at Fraunhofer IMS, with two years of production software engineering experience.",
   intro:
