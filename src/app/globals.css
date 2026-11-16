@@ -1,0 +1,127 @@
+@import "tailwindcss";
+
+/* ---------- Design tokens ----------
+   Dark graphite base, one warm amber accent, warm paper for the personal section. */
+@theme {
+  --color-ink: #0b0c0e;
+  --color-ink-2: #111316;
+  --color-ink-3: #171a1e;
+  --color-line: rgb(255 255 255 / 0.08);
+  --color-line-strong: rgb(255 255 255 / 0.16);
+  --color-fg: #ece9e4;
+  --color-fg-muted: #a3a09a;
+  --color-fg-dim: #6f6c67;
+  --color-accent: #e9a23b;
+  --color-accent-soft: rgb(233 162 59 / 0.12);
+  --color-ok: #7fbf8e;
+  --color-paper: #f4efe6;
+  --color-paper-2: #ebe3d5;
+  --color-paper-ink: #2a241d;
+  --color-paper-muted: #6d6256;
+  --color-clay: #c4643b;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-instrument), ui-serif, Georgia, serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, SFMono-Regular, monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+  color-scheme: dark;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+body {
+  background: var(--color-ink);
+  color: var(--color-fg);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Subtle engineering grid used behind the hero and section headers */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.035) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.mask-fade {
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black 30%, transparent 100%);
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+.text-pretty {
+  text-wrap: pretty;
+}
+
+/* Hero scene animations (pure CSS, paused for reduced motion via the rule above) */
+@keyframes dash {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.25; }
+}
+@keyframes scan {
+  0% { transform: translateY(0); opacity: 0; }
+  10% { opacity: 0.7; }
+  90% { opacity: 0.7; }
+  100% { transform: translateY(260px); opacity: 0; }
+}
+.anim-blink {
+  animation: blink 2.4s ease-in-out infinite;
+}
+.anim-scan {
+  animation: scan 6s linear infinite;
+}
+
+/* Scroll reveal (see components/Reveal.tsx) */
+.reveal-pending {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0s),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0s);
+}
+.reveal-pending.reveal-in {
+  opacity: 1;
+  transform: none;
+}
+
+@keyframes hero-in {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: none; }
+}
+.anim-hero {
+  animation: hero-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
