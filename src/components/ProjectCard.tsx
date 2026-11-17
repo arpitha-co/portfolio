@@ -28,7 +28,7 @@ export function ProjectCard({ project, large = false }: { project: Project; larg
         aria-hidden
         className={`relative block overflow-hidden border-line bg-black ${large ? "aspect-video lg:aspect-auto lg:min-h-full lg:border-r" : "aspect-video border-b"}`}
       >
-        <ProjectVisual project={project} videoFit={large ? "cover" : "contain"} sizes={large ? "(min-width: 1024px) 620px, 100vw" : "(min-width: 1024px) 560px, 100vw"} />
+        <ProjectVisual project={project} sizes={large ? "(min-width: 1024px) 620px, 100vw" : "(min-width: 1024px) 560px, 100vw"} />
         {hasVideo(project) ? (
           <span className="absolute top-3 left-3 inline-flex items-center gap-1.5 rounded-full bg-black/60 px-2.5 py-1 font-mono text-[11px] text-white/90 backdrop-blur">
             <PlayCircle className="size-3.5" aria-hidden /> Video
