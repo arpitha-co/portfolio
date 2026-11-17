@@ -58,6 +58,10 @@ export interface Project {
   results?: { value: string; label: string }[];
   resultsTable?: { caption: string; head: string[]; rows: string[][] };
   pipeline?: PipelineStage[];
+  /** Looping muted clip used as the cover instead of the first image. */
+  coverVideo?: { src: string; poster: string; alt: string };
+  /** Video galleries on the detail page. */
+  videoGroups?: VideoGroup[];
   /** Extra titled lists on the detail page (e.g. challenges, results). */
   sections?: { title: string; items: string[] }[];
   /** "Current research direction" paragraph on the detail page. */
@@ -86,4 +90,20 @@ export interface Hobby {
   illustration: "yarn" | "whisk" | "compass" | "speech" | "spark";
   /** Optional photo in /public/images/personal/. */
   photo?: string;
+}
+
+export interface ProjectVideo {
+  src: string;
+  poster: string;
+  label: string;
+  caption: string;
+  tone?: "ok" | "warn" | "fail";
+}
+
+export interface VideoGroup {
+  title: string;
+  intro?: string;
+  /** 1 for wide side-by-side clips, 2 for regular 16:9 clips. */
+  columns?: 1 | 2;
+  items: ProjectVideo[];
 }

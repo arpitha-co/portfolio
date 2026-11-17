@@ -38,7 +38,7 @@ export function Research() {
           <p className="font-mono text-[11px] tracking-widest text-accent uppercase">Current thesis · progress</p>
           <p className="mt-3 max-w-3xl font-serif text-2xl leading-snug text-balance sm:text-3xl">
             Can pretrained VLA models learn reliable pick-and-place on a Franka Panda from a small set of
-            planner-generated demonstrations? So far: <span className="text-accent">0% zero-shot → 70% after fine-tuning.</span>
+            planner-generated demonstrations? So far: <span className="text-accent">0% zero-shot → 62% after fine-tuning.</span>
           </p>
           <div className="mt-6">
             <Pipeline stages={thesis.pipeline} />

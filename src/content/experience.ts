@@ -12,13 +12,13 @@ export const experience: Experience[] = [
     summary:
       "Master's thesis on fine-tuning Vision-Language-Action (VLA) models for robotic grasping and manipulation with a Franka Emika Panda.",
     metrics: [
-      { value: "70%", label: "pick-and-place success after fine-tuning (35 / 50 episodes)" },
+      { value: "62%", label: "pick-and-place success after fine-tuning (31 / 50 episodes, up from 0% zero-shot)" },
       { value: "70", label: "planner-generated demonstrations" },
     ],
     bullets: [
-      "Evaluated pretrained VLA models, including π0 and π0.5, zero-shot on a simple pick-and-place task. They reached a 0% success rate, which shows how hard direct transfer to a new robot setup is.",
+      "Evaluated pretrained VLA models (OpenVLA, OpenVLA-OFT, π0 and π0.5) zero-shot on a pick-and-place task in Isaac Sim. All reached a 0% success rate, which shows how hard direct transfer to a new robot setup is.",
       "Developed a data-collection workflow that uses a planner to generate robot demonstrations, and collected 70 demonstrations covering different object positions.",
-      "Fine-tuned the model for the Franka Emika Panda pick-and-place setup, reaching 35 successful executions out of 50 evaluation episodes (70% success).",
+      "Fine-tuned π0.5 for the Franka Emika Panda pick-and-place setup and compared checkpoints on the same 50 seeded episodes: 10 / 50 successes at 5,000 steps and 31 / 50 (62%) at 7,000 steps.",
       "Currently investigating how demonstration quality, dataset diversity, object positions, model adaptation and fine-tuning strategies affect performance, with a focus on reliability and generalisation.",
     ],
     tech: ["π0 / π0.5", "VLA models", "Franka Emika Panda", "Python", "Isaac Sim", "ROS 2", "Robotic manipulation", "Data collection & fine-tuning"],

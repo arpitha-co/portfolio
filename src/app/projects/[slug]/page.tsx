@@ -6,6 +6,7 @@ import { ArrowLeft, ArrowRight, Calendar } from "lucide-react";
 import { getProject, projects } from "@/content/projects";
 import { ProjectVisual } from "@/components/ProjectVisual";
 import { Pipeline } from "@/components/Pipeline";
+import { AutoVideo } from "@/components/AutoVideo";
 import { GithubIcon, StatusBadge, Tag } from "@/components/ui";
 
 export const dynamicParams = false;
@@ -99,6 +100,39 @@ export default async function ProjectPage({ params }: PageProps<"/projects/[slug
               ))}
             </div>
           </section>
+
+          {p.videoGroups?.map((g) => (
+            <section key={g.title} aria-label={g.title} className="mt-12">
+              <h2 className="font-mono text-xs tracking-widest text-fg-dim uppercase">{g.title}</h2>
+              {g.intro ? <p className="mt-3 text-[15px] text-fg-muted">{g.intro}</p> : null}
+              <div className={`mt-5 grid gap-4 ${g.columns === 1 ? "" : "sm:grid-cols-2"}`}>
+                {g.items.map((v) => (
+                  <figure key={v.src} className="overflow-hidden rounded-xl border border-line bg-ink-2">
+                    <AutoVideo
+                      src={v.src}
+                      poster={v.poster}
+                      label={`${v.label}: ${v.caption}`}
+                      className="block w-full bg-black"
+                    />
+                    <figcaption className="flex items-start gap-2.5 border-t border-line px-4 py-3 text-sm text-fg-muted">
+                      <span
+                        className={`mt-0.5 shrink-0 rounded-full border px-2 py-0.5 font-mono text-[10px] ${
+                          v.tone === "ok"
+                            ? "border-ok/40 text-ok"
+                            : v.tone === "warn"
+                              ? "border-accent/40 text-accent"
+                              : "border-red-400/40 text-red-300"
+                        }`}
+                      >
+                        {v.label}
+                      </span>
+                      <span>{v.caption}</span>
+                    </figcaption>
+                  </figure>
+                ))}
+              </div>
+            </section>
+          ))}
 
           {p.sections?.map((sec) => (
             <section key={sec.title} aria-label={sec.title} className="mt-12">

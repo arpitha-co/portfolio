@@ -1,5 +1,6 @@
 import Image from "next/image";
 import type { Project } from "@/content/types";
+import { AutoVideo } from "./AutoVideo";
 
 /**
  * Cover image for a project. Uses the first screenshot if there is one,
@@ -7,6 +8,16 @@ import type { Project } from "@/content/types";
  * via `images` in content/projects.ts).
  */
 export function ProjectVisual({ project, priority = false, sizes }: { project: Project; priority?: boolean; sizes?: string }) {
+  if (project.coverVideo) {
+    return (
+      <AutoVideo
+        src={project.coverVideo.src}
+        poster={project.coverVideo.poster}
+        label={project.coverVideo.alt}
+        className="absolute inset-0 size-full bg-black object-contain"
+      />
+    );
+  }
   const img = project.images[0];
   if (img) {
     return (
