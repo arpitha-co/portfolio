@@ -41,9 +41,9 @@ export const metadata: Metadata = {
     description: site.description,
     url: site.url,
     siteName: site.name,
-    images: [{ url: site.photo, width: 900, height: 1246, alt: site.name }],
+    locale: "en_US",
   },
-  twitter: { card: "summary", title: `${site.name} — ${site.role}`, description: site.description },
+  twitter: { card: "summary_large_image", title: `${site.name} — ${site.role}`, description: site.description },
   alternates: { canonical: "/" },
 };
 

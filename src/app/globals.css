@@ -10,14 +10,14 @@
   --color-line-strong: rgb(255 255 255 / 0.16);
   --color-fg: #ece9e4;
   --color-fg-muted: #a3a09a;
-  --color-fg-dim: #6f6c67;
+  --color-fg-dim: #8c887f; /* ≥4.5:1 on ink for small text */
   --color-accent: #e9a23b;
   --color-accent-soft: rgb(233 162 59 / 0.12);
   --color-ok: #7fbf8e;
   --color-paper: #f4efe6;
   --color-paper-2: #ebe3d5;
   --color-paper-ink: #2a241d;
-  --color-paper-muted: #6d6256;
+  --color-paper-muted: #5f554a;
   --color-clay: #c4643b;
 
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
@@ -92,17 +92,8 @@ body {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.25; }
 }
-@keyframes scan {
-  0% { transform: translateY(0); opacity: 0; }
-  10% { opacity: 0.7; }
-  90% { opacity: 0.7; }
-  100% { transform: translateY(260px); opacity: 0; }
-}
 .anim-blink {
   animation: blink 2.4s ease-in-out infinite;
-}
-.anim-scan {
-  animation: scan 6s linear infinite;
 }
 
 /* Scroll reveal (see components/Reveal.tsx) */
@@ -124,4 +115,52 @@ body {
 }
 .anim-hero {
   animation: hero-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ---------- Buttons (one system for every CTA) ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 0.6rem;
+  border: 1px solid transparent;
+  padding: 0.7rem 1.15rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.2;
+  white-space: nowrap;
+  transition: background-color 0.2s, border-color 0.2s, color 0.2s, transform 0.2s;
+}
+.btn:active {
+  transform: translateY(1px);
+}
+.btn-sm {
+  padding: 0.45rem 0.8rem;
+  font-size: 0.8125rem;
+}
+.btn-primary {
+  background: var(--color-accent);
+  color: var(--color-ink);
+}
+.btn-primary:hover {
+  background: #f0b257;
+}
+.btn-secondary {
+  border-color: var(--color-line-strong);
+  color: var(--color-fg);
+}
+.btn-secondary:hover {
+  border-color: var(--color-fg-muted);
+  background: rgb(255 255 255 / 0.03);
+}
+.btn-ghost {
+  color: var(--color-fg-muted);
+}
+.btn-ghost:hover {
+  color: var(--color-fg);
+}
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }

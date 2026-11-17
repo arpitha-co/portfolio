@@ -14,7 +14,7 @@ export const site = {
     "Hi, I'm Arpitha — an AI Engineer passionate about building intelligent systems that interact with the real world. My interests lie at the intersection of artificial intelligence, robotics, and computer vision. I enjoy experimenting with emerging AI technologies and turning research ideas into practical applications.",
   currently: {
     label: "Currently",
-    text: "Master's thesis at Fraunhofer IMS — fine-tuning VLA models for robotic pick-and-place",
+    text: "Master's thesis on VLA models at Fraunhofer IMS",
   },
   location: "Germany",
   email: "arpithasa2023@gmail.com",

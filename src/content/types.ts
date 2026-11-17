@@ -41,6 +41,49 @@ export interface ProjectImage {
   fit?: "cover" | "contain";
 }
 
+/** A video file served from /public/videos. Built with `video()` in media.ts. */
+export interface VideoAsset {
+  /** Sources in preference order (WebM first when it is smaller, MP4 always). */
+  sources: { src: string; type: string }[];
+  poster: string;
+  /** CSS aspect ratio of the encoded file, e.g. "16 / 9". */
+  aspect: string;
+  /** Accessible description of what the clip shows. */
+  title: string;
+}
+
+export interface Demo {
+  video: VideoAsset;
+  label: string;
+  caption: string;
+  tone?: "ok" | "warn" | "fail" | "neutral";
+}
+
+export interface Chapter {
+  /** Seconds from the start of the video. */
+  t: number;
+  label: string;
+}
+
+export interface Episode {
+  episode: number;
+  stage: "Early training" | "Intermediate training" | "Later training";
+  /** What the recorded rollout shows: observed, not measured. */
+  observation: string;
+  video: VideoAsset;
+}
+
+/** One block of demonstrations on a project page. */
+export type DemoBlock =
+  | { kind: "grid"; title: string; intro?: string; columns: 1 | 2; items: Demo[] }
+  | { kind: "feature"; title: string; intro?: string; video: VideoAsset; chapters?: Chapter[] }
+  | { kind: "episodes"; title: string; intro?: string; episodes: Episode[] };
+
+export interface ArchitectureStep {
+  label: string;
+  detail: string;
+}
+
 export interface Project {
   slug: string;
   title: string;
@@ -49,20 +92,26 @@ export interface Project {
   period: string;
   status: Status;
   context: string;
+  /** One or two sentences for the project card. */
   description: string;
-  /** Detail-page body paragraphs. */
-  details: string[];
+  /** What problem the project addresses. */
+  problem: string;
+  /** How it was approached (paragraphs). */
+  approach: string[];
+  /** System workflow, rendered as a step diagram. */
+  architecture: ArchitectureStep[];
+  /** What I built / did. Only things evidenced by code, CV or the user. */
+  contribution: string[];
   highlights: string[];
   tech: string[];
   /** Real results only. Leave empty rather than estimating. */
   results?: { value: string; label: string }[];
   resultsTable?: { caption: string; head: string[]; rows: string[][] };
   pipeline?: PipelineStage[];
-  /** Looping muted clip used as the cover instead of the first image. */
-  coverVideo?: { src: string; poster: string; alt: string };
-  /** Video galleries on the detail page. */
-  videoGroups?: VideoGroup[];
-  /** Extra titled lists on the detail page (e.g. challenges, results). */
+  /** Muted, looping clip on the card and page header (falls back to images[0]). */
+  coverVideo?: VideoAsset;
+  demos?: DemoBlock[];
+  /** Extra titled lists on the detail page (e.g. challenges). */
   sections?: { title: string; items: string[] }[];
   /** "Current research direction" paragraph on the detail page. */
   direction?: string;
@@ -90,20 +139,4 @@ export interface Hobby {
   illustration: "yarn" | "whisk" | "compass" | "speech" | "spark";
   /** Optional photo in /public/images/personal/. */
   photo?: string;
-}
-
-export interface ProjectVideo {
-  src: string;
-  poster: string;
-  label: string;
-  caption: string;
-  tone?: "ok" | "warn" | "fail";
-}
-
-export interface VideoGroup {
-  title: string;
-  intro?: string;
-  /** 1 for wide side-by-side clips, 2 for regular 16:9 clips. */
-  columns?: 1 | 2;
-  items: ProjectVideo[];
 }

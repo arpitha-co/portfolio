@@ -96,7 +96,7 @@ export async function GitHubSection() {
           href={site.social.github}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 rounded-lg border border-line-strong px-4 py-2.5 text-sm transition-colors hover:border-fg"
+          className="btn btn-secondary"
         >
           <GithubIcon className="size-4" /> View full profile
           <ArrowUpRight className="size-3.5" aria-hidden />

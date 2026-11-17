@@ -50,9 +50,9 @@ export function Education() {
                 ))}
               </div>
 
-              <div className="mt-7 border-t border-line pt-5">
-                <p className="font-mono text-[11px] tracking-widest text-fg-dim uppercase">Academic projects</p>
-                {e.projects.length ? (
+              {e.projects.length ? (
+                <div className="mt-7 border-t border-line pt-5">
+                  <p className="font-mono text-[11px] tracking-widest text-fg-dim uppercase">Academic projects</p>
                   <ul className="mt-3 space-y-2">
                     {e.projects.map((p) => (
                       <li key={p.title} className="text-sm">
@@ -66,12 +66,8 @@ export function Education() {
                       </li>
                     ))}
                   </ul>
-                ) : (
-                  <p className="mt-3 rounded-md border border-dashed border-line-strong px-3 py-2 font-mono text-xs text-fg-dim">
-                    [Placeholder: add final-year project in content/education.ts]
-                  </p>
-                )}
-              </div>
+                </div>
+              ) : null}
             </article>
           </Reveal>
         ))}

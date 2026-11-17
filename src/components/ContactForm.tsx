@@ -91,7 +91,7 @@ export function ContactForm() {
         <button
           type="submit"
           disabled={status.kind === "sending"}
-          className="inline-flex items-center gap-2 rounded-lg bg-accent px-5 py-3 text-sm font-medium text-ink transition-transform hover:-translate-y-0.5 disabled:opacity-60"
+          className="btn btn-primary"
         >
           {status.kind === "sending" ? <Loader2 className="size-4 animate-spin" aria-hidden /> : <Send className="size-4" aria-hidden />}
           {status.kind === "sending" ? "Sending…" : "Send message"}

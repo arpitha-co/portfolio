@@ -20,7 +20,7 @@ export function Section({
   className?: string;
 }) {
   return (
-    <section id={id} aria-labelledby={`${id}-title`} className={`relative py-20 sm:py-28 ${className}`}>
+    <section id={id} aria-labelledby={`${id}-title`} className={`relative border-t border-line py-20 sm:py-28 ${className}`}>
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <Reveal>
           <p className="font-mono text-xs tracking-widest text-fg-dim uppercase">

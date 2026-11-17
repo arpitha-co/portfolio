@@ -1,8 +1,7 @@
 import Image from "next/image";
-import { ArrowDown, Download, MapPin } from "lucide-react";
+import { ArrowDown, Briefcase, Download, FlaskConical, GraduationCap, MapPin } from "lucide-react";
 import { site } from "@/content/site";
 import { GithubIcon, LinkedinIcon } from "./ui";
-import { HeroIntro } from "./HeroIntro";
 
 /**
  * Hero: text on the left, the portrait framed like a camera's detection
@@ -14,19 +13,19 @@ export function Hero() {
       <div aria-hidden className="bg-grid mask-fade pointer-events-none absolute inset-0" />
       <div
         aria-hidden
-        className="pointer-events-none absolute -top-40 right-[-10%] size-[620px] rounded-full bg-accent/10 blur-[140px]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_50%_at_80%_0%,rgba(233,162,59,0.07),transparent_70%)]"
       />
       <TrajectoryLines />
 
       <div className="relative mx-auto grid max-w-6xl items-center gap-14 px-4 sm:px-6 lg:grid-cols-[1.25fr_1fr] lg:gap-20">
-        <HeroIntro>
+        <div className="anim-hero min-w-0">
           <p className="inline-flex max-w-full items-center gap-2 rounded-full border border-line bg-ink-2/70 px-3 py-1.5 font-mono text-[11px] text-fg-muted backdrop-blur">
             <span className="anim-blink size-1.5 shrink-0 rounded-full bg-accent" aria-hidden />
             <span className="text-accent">{site.currently.label}:</span>
             <span className="truncate">{site.currently.text}</span>
           </p>
 
-          <h1 className="mt-7 font-serif text-[clamp(3rem,8vw,5.75rem)] leading-[0.95] tracking-tight">
+          <h1 className="mt-7 font-serif text-[clamp(2.75rem,6.5vw,4.75rem)] leading-[0.98] tracking-tight">
             Arpitha
             <br />
             <span className="italic text-fg-muted">Thimmegowda</span>
@@ -37,18 +36,11 @@ export function Hero() {
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-fg-muted text-pretty">{site.intro}</p>
 
           <div className="mt-9 flex flex-wrap items-center gap-3">
-            <a
-              href="#projects"
-              className="group inline-flex items-center gap-2 rounded-lg bg-accent px-5 py-3 text-sm font-medium text-ink transition-transform hover:-translate-y-0.5"
-            >
-              Explore My Work
+            <a href="#projects" className="btn btn-primary group">
+              Explore my work
               <ArrowDown className="size-4 transition-transform group-hover:translate-y-0.5" aria-hidden />
             </a>
-            <a
-              href={site.cv.href}
-              download={site.cv.fileName}
-              className="inline-flex items-center gap-2 rounded-lg border border-line-strong px-5 py-3 text-sm font-medium transition-colors hover:border-fg"
-            >
+            <a href={site.cv.href} download={site.cv.fileName} className="btn btn-secondary">
               <Download className="size-4" aria-hidden />
               Download CV
             </a>
@@ -74,10 +66,21 @@ export function Hero() {
             </div>
           </div>
 
-          <p className="mt-8 inline-flex items-center gap-1.5 text-sm text-fg-dim">
-            <MapPin className="size-4" aria-hidden /> Based in {site.location}
-          </p>
-        </HeroIntro>
+          <ul className="mt-10 grid gap-x-6 gap-y-2.5 border-t border-line pt-6 text-sm text-fg-muted sm:grid-cols-2">
+            <li className="flex items-center gap-2.5">
+              <FlaskConical className="size-4 shrink-0 text-accent" aria-hidden /> Thesis research at Fraunhofer IMS
+            </li>
+            <li className="flex items-center gap-2.5">
+              <GraduationCap className="size-4 shrink-0 text-accent" aria-hidden /> M.Sc. AI, OTH Amberg-Weiden
+            </li>
+            <li className="flex items-center gap-2.5">
+              <Briefcase className="size-4 shrink-0 text-accent" aria-hidden /> 2 years software engineering at Infosys
+            </li>
+            <li className="flex items-center gap-2.5">
+              <MapPin className="size-4 shrink-0 text-accent" aria-hidden /> Based in {site.location}
+            </li>
+          </ul>
+        </div>
 
         <Viewfinder />
       </div>
@@ -99,14 +102,11 @@ function Viewfinder() {
         />
         <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-transparent" />
 
-        {/* Scan line */}
-        <div aria-hidden className="anim-scan absolute inset-x-0 top-[12%] h-px bg-accent/60 shadow-[0_0_12px_2px_rgba(233,162,59,0.35)]" />
-
         {/* Detection box */}
         <svg aria-hidden viewBox="0 0 100 125" preserveAspectRatio="none" className="absolute inset-0 size-full">
           <rect x="18" y="10" width="64" height="72" fill="none" stroke="var(--color-accent)" strokeWidth="0.35" strokeDasharray="2 1.2" opacity="0.85" />
         </svg>
-        <div aria-hidden className="absolute left-[18%] top-[8%] -translate-y-full rounded-sm bg-accent px-1.5 py-0.5 font-mono text-[10px] font-medium text-ink">
+        <div aria-hidden className="absolute left-[18%] top-[8%] -translate-y-full rounded-sm bg-accent px-1.5 py-0.5 font-mono text-[11px] font-medium text-ink">
           human · ai_engineer
         </div>
 
@@ -120,13 +120,12 @@ function Viewfinder() {
           <span key={c} aria-hidden className={`absolute size-5 border-fg/60 ${c}`} />
         ))}
 
-        <div aria-hidden className="absolute inset-x-0 bottom-0 flex items-center justify-between px-5 pb-5 font-mono text-[10px] text-fg/80">
-          <span>perceive → reason → act</span>
-          <span className="text-accent">● rec</span>
+        <div aria-hidden className="absolute inset-x-0 bottom-0 px-5 pb-5 font-mono text-[11px] text-fg/80">
+          perceive → reason → act
         </div>
       </div>
 
-      <div aria-hidden className="mt-4 grid grid-cols-3 gap-2 font-mono text-[10px] text-fg-dim">
+      <div aria-hidden className="mt-4 grid grid-cols-3 gap-2 font-mono text-[11px] text-fg-dim">
         {[
           ["vision", "OpenCV · YOLOv8"],
           ["language", "VLMs · VLAs"],
@@ -166,15 +165,6 @@ function TrajectoryLines() {
         strokeWidth="0.6"
         strokeDasharray="4 6"
       />
-      {[
-        [1080, 300],
-        [60, 412],
-      ].map(([x, y]) => (
-        <g key={`${x}-${y}`}>
-          <circle cx={x} cy={y} r="3" fill="var(--color-accent)" />
-          <circle cx={x} cy={y} r="10" stroke="var(--color-accent)" strokeWidth="0.6" />
-        </g>
-      ))}
     </svg>
   );
 }
