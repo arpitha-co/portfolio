@@ -113,6 +113,7 @@ export default async function ProjectPage({ params }: PageProps<"/projects/[slug
                       poster={v.poster}
                       label={`${v.label}: ${v.caption}`}
                       className="block w-full bg-black"
+                      controls
                     />
                     <figcaption className="flex items-start gap-2.5 border-t border-line px-4 py-3 text-sm text-fg-muted">
                       <span

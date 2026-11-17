@@ -50,7 +50,7 @@ export const projects: Project[] = [
     videoGroups: [
       {
         title: "Zero-shot: pretrained models, no fine-tuning",
-        intro: "Each pretrained model on the same pick-and-place task without any adaptation. None of them completes it (sped up).",
+        intro: "Each pretrained model on the same pick-and-place task without any adaptation. None of them completes it. Played at 4× speed; the longer runs are trimmed to their first 45 s.",
         columns: 2,
         items: [
           { src: "/videos/vla/zs-openvla.mp4", poster: "/videos/vla/zs-openvla.jpg", label: "OpenVLA", caption: "Hovers above the table and never reaches the cube.", tone: "fail" },
@@ -61,17 +61,17 @@ export const projects: Project[] = [
       },
       {
         title: "Fine-tuned π0.5: 7,000 steps",
-        intro: "Overhead and wrist camera side by side. One example of each outcome from the 50-episode evaluation.",
+        intro: "Overhead camera (left) and wrist camera (right), in real time. One example of each outcome from the 50-episode evaluation; the last frame is held for 3 s so the final state is visible.",
         columns: 1,
         items: [
-          { src: "/videos/vla/ft7000-success.mp4", poster: "/videos/vla/ft7000-success.jpg", label: "Success", caption: "Seed 1000: grasps the cube and places it in the bin.", tone: "ok" },
+          { src: "/videos/vla/ft7000-success.mp4", poster: "/videos/vla/ft7000-success.jpg", label: "Success", caption: "Seed 1000: grasps the cube and places it in the bin (visible in the wrist camera at the end).", tone: "ok" },
           { src: "/videos/vla/ft7000-timeout.mp4", poster: "/videos/vla/ft7000-timeout.jpg", label: "Timeout", caption: "Seed 1001: does not finish within the 90 s limit.", tone: "warn" },
           { src: "/videos/vla/ft7000-cube-fell.mp4", poster: "/videos/vla/ft7000-cube-fell.jpg", label: "Cube fell", caption: "Seed 1030: the cube is pushed off the table.", tone: "fail" },
         ],
       },
       {
         title: "Earlier checkpoint: 5,000 steps",
-        intro: "The same seeds at 5,000 training steps, where only 10 of 50 episodes succeeded.",
+        intro: "The same seeds at 5,000 training steps, where only 10 of 50 episodes succeeded. Real time.",
         columns: 1,
         items: [
           { src: "/videos/vla/ft5000-success.mp4", poster: "/videos/vla/ft5000-success.jpg", label: "Success", caption: "Seed 1000: succeeds, but more slowly than at 7,000 steps.", tone: "ok" },

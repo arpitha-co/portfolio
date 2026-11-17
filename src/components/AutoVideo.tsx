@@ -11,11 +11,14 @@ export function AutoVideo({
   poster,
   label,
   className = "",
+  controls = false,
 }: {
   src: string;
   poster: string;
   label: string;
   className?: string;
+  /** Show play/pause/scrub controls (always shown for reduced-motion users). */
+  controls?: boolean;
 }) {
   const ref = useRef<HTMLVideoElement>(null);
   const [reduced, setReduced] = useState(false);
@@ -47,7 +50,7 @@ export function AutoVideo({
       loop
       playsInline
       preload="metadata"
-      controls={reduced}
+      controls={controls || reduced}
       className={className}
     />
   );
