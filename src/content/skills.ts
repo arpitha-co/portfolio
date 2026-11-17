@@ -34,7 +34,7 @@ export const skills: SkillGroup[] = [
   {
     title: "Frameworks & Libraries",
     icon: "brain",
-    items: ["PyTorch", "scikit-learn", "CVAT", "Stable-Baselines3", "Gymnasium", "TensorFlow / Keras", "NumPy"],
+    items: ["PyTorch", "scikit-learn", "CVAT", "Stable-Baselines3", "Gymnasium", "NumPy"],
   },
   {
     title: "Robotics & Simulation",
