@@ -98,15 +98,15 @@ function Viewfinder() {
           fill
           priority
           sizes="(min-width: 1024px) 420px, 380px"
-          className="object-cover object-[50%_20%] grayscale-[15%]"
+          className="object-cover object-[50%_60%]"
         />
         <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-transparent" />
 
         {/* Detection box */}
         <svg aria-hidden viewBox="0 0 100 125" preserveAspectRatio="none" className="absolute inset-0 size-full">
-          <rect x="18" y="10" width="64" height="72" fill="none" stroke="var(--color-accent)" strokeWidth="0.35" strokeDasharray="2 1.2" opacity="0.85" />
+          <rect x="30" y="47" width="56" height="64" fill="none" stroke="var(--color-accent)" strokeWidth="0.35" strokeDasharray="2 1.2" opacity="0.85" />
         </svg>
-        <div aria-hidden className="absolute left-[18%] top-[8%] -translate-y-full rounded-sm bg-accent px-1.5 py-0.5 font-mono text-[11px] font-medium text-ink">
+        <div aria-hidden className="absolute left-[30%] top-[37.6%] -translate-y-full rounded-sm bg-accent px-1.5 py-0.5 font-mono text-[11px] font-medium text-ink">
           human · ai_engineer
         </div>
 

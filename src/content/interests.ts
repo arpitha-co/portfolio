@@ -66,9 +66,6 @@ export const hobbies: Hobby[] = [
     title: "Travelling",
     blurb: "Exploring new places, cities and landscapes, from Karnataka to Bavaria and beyond.",
     illustration: "compass",
-    photo: "/images/personal/travel.jpg",
-    photoAlt: "Arpitha smiling on a riverside promenade on a sunny day, with a church spire and a Ferris wheel behind her",
-    photoPosition: "50% 58%",
   },
   {
     title: "Learning languages",
