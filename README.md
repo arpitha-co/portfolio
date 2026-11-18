@@ -55,7 +55,6 @@ and `episodes` (tabbed training-episode selector).
 Repo stats (language, last push, stars/forks when > 0) are fetched from the GitHub API **at build time**, so rebuild to refresh them.
 If the API fails or hits a rate limit, the curated values in `src/content/github.ts` are used instead and the build still succeeds.
 Set `GITHUB_TOKEN` to avoid rate limits in CI.
-The contribution calendar loads in the browser from `github-contributions-api.jogruber.de` and hides itself if that service is unavailable.
 
 ## Contact form
 

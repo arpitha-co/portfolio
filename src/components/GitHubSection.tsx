@@ -4,7 +4,6 @@ import { getRepos } from "@/lib/github";
 import { site } from "@/content/site";
 import { GithubIcon, Section, Tag } from "./ui";
 import { Reveal } from "./Reveal";
-import { ContributionChart } from "./ContributionChart";
 
 const langColor: Record<string, string> = {
   Python: "#3572A5",
@@ -87,11 +86,7 @@ export async function GitHubSection() {
         ))}
       </div>
 
-      <Reveal className="mt-10">
-        <ContributionChart user={site.social.githubUser} />
-      </Reveal>
-
-      <div className="mt-8">
+      <div className="mt-10">
         <a
           href={site.social.github}
           target="_blank"
