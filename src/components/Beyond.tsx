@@ -33,7 +33,7 @@ export function Beyond() {
                 <article className="flex h-full flex-col overflow-hidden rounded-2xl border border-paper-ink/10 bg-paper-2/60">
                   <div className={`relative ${i < 2 ? "aspect-[16/8]" : "aspect-[16/9]"} overflow-hidden border-b border-paper-ink/10`}>
                     {h.photo ? (
-                      <Image src={h.photo} alt={h.title} fill sizes="(min-width:1024px) 560px, 100vw" className="object-cover" />
+                      <Image src={h.photo} alt={h.photoAlt ?? h.title} fill sizes="(min-width:1024px) 400px, 100vw" className="object-cover" style={{ objectPosition: h.photoPosition ?? "50% 50%" }} />
                     ) : (
                       <Illustration kind={h.illustration} />
                     )}

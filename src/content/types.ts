@@ -139,4 +139,7 @@ export interface Hobby {
   illustration: "yarn" | "whisk" | "compass" | "speech" | "spark";
   /** Optional photo in /public/images/personal/. */
   photo?: string;
+  photoAlt?: string;
+  /** CSS object-position to keep the subject in frame, e.g. "50% 55%". */
+  photoPosition?: string;
 }
