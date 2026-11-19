@@ -9,7 +9,7 @@ export function Skills() {
   return (
     <Section
       id="skills"
-      index="02"
+      index="04"
       eyebrow="Toolbox"
       title={
         <>

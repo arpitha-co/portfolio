@@ -51,14 +51,15 @@ export const experience: Experience[] = [
     org: "VI Solutions",
     orgUrl: "https://visolutions.org/",
     period: "08/2021 – 09/2021",
-    location: "India",
+    location: "Bengaluru, India",
     status: "completed",
-    summary: "Data acquisition, IoT monitoring and first steps into machine learning on sensor data.",
+    summary: "Machine learning on sensor data for prediction and anomaly detection.",
     bullets: [
-      "Developed and tested LabVIEW-based data acquisition systems for monitoring DAQ hardware and IoT devices.",
-      "Processed sensor data and explored machine learning and deep learning for prediction and anomaly detection.",
+      "Processed and analyzed sensor data to perform prediction and anomaly detection using machine learning techniques.",
+      "Applied data-driven methods to identify patterns and support process optimization decisions.",
+      "Collaborated with cross-functional teams to interpret results and translate them into actionable insights.",
     ],
-    tech: ["LabVIEW", "DAQ", "IoT", "Machine Learning"],
+    tech: ["Machine Learning", "Data Analysis", "Anomaly Detection"],
   },
 ];
 

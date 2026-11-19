@@ -8,7 +8,7 @@ export function Projects() {
   return (
     <Section
       id="projects"
-      index="04"
+      index="03"
       eyebrow="Featured work"
       title={
         <>

@@ -23,7 +23,7 @@ export function About() {
           <p>
             I started in <span className="text-fg">Mechatronics Engineering</span>, where I learned how mechanics,
             electronics and control come together in a real machine. My first taste of machine learning came during an
-            internship, predicting and spotting anomalies in sensor data from LabVIEW-based acquisition systems.
+            internship, using sensor data for prediction and anomaly detection.
           </p>
           <p>
             I then spent two years as a <span className="text-fg">System Engineer at Infosys</span>, building and
