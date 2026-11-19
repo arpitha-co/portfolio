@@ -10,7 +10,7 @@ export function Contact() {
     {
       icon: <LinkedinIcon className="size-4" />,
       label: "LinkedIn",
-      value: "arpitha-t",
+      value: "arpitha-thimmegowda",
       href: site.social.linkedin,
       external: true,
     },

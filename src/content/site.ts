@@ -4,7 +4,9 @@
 export const site = {
   name: "Arpitha Thimmegowda",
   firstName: "Arpitha",
-  headline: "AI Engineer | Robotics & Computer Vision · Open to roles from May 2027",
+  headline: "AI Engineer · Robotics & Computer Vision",
+  /** Shown under the headline. Set to "" to hide. */
+  availability: "Open to roles from March 2027",
   role: "AI Engineer",
   // Change to your final domain before deploying (used for SEO / sitemap).
   url: "https://arpitha-thimmegowda.vercel.app",
@@ -26,7 +28,7 @@ export const site = {
   social: {
     github: "https://github.com/arpitha-co",
     githubUser: "arpitha-co",
-    linkedin: "https://www.linkedin.com/in/arpitha-t-aa375421b/",
+    linkedin: "https://www.linkedin.com/in/arpitha-thimmegowda-aa375421b/",
   },
   /**
    * Contact form delivery. Leave empty to fall back to opening the visitor's
