@@ -31,7 +31,14 @@ export function Hero() {
             <span className="italic text-fg-muted">Thimmegowda</span>
           </h1>
 
-          <p className="mt-6 font-mono text-sm text-accent sm:text-[15px]">{site.headline}</p>
+          <p className="mt-6 font-mono text-sm text-accent sm:text-[15px]">
+            {/* Parts separated by " · " each start on their own line. */}
+            {site.headline.split(" · ").map((part, i) => (
+              <span key={part} className={i === 0 ? "block" : "mt-1 block text-fg-muted"}>
+                {part}
+              </span>
+            ))}
+          </p>
 
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-fg-muted text-pretty">{site.intro}</p>
 

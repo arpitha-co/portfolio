@@ -4,7 +4,7 @@
 export const site = {
   name: "Arpitha Thimmegowda",
   firstName: "Arpitha",
-  headline: "AI Engineer | Robotics & Computer Vision Enthusiast",
+  headline: "AI Engineer | Robotics & Computer Vision · Open to roles from May 2027",
   role: "AI Engineer",
   // Change to your final domain before deploying (used for SEO / sitemap).
   url: "https://arpitha-thimmegowda.vercel.app",
