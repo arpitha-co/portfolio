@@ -28,12 +28,25 @@ export function Beyond() {
 
         <ul className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-6">
           {hobbies.map((h, i) => (
-            <li key={h.title} className={i < 2 ? "lg:col-span-3" : "lg:col-span-2"}>
+            <li key={h.title} className="lg:col-span-2">
               <Reveal delay={(i % 3) * 0.06} className="h-full">
                 <article className="flex h-full flex-col overflow-hidden rounded-2xl border border-paper-ink/10 bg-paper-2/60">
-                  <div className={`relative ${i < 2 ? "aspect-[16/8]" : "aspect-[16/9]"} overflow-hidden border-b border-paper-ink/10`}>
-                    {h.photo ? (
-                      <Image src={h.photo} alt={h.photoAlt ?? h.title} fill sizes="(min-width:1024px) 400px, 100vw" className="object-cover" style={{ objectPosition: h.photoPosition ?? "50% 50%" }} />
+                  <div className="relative aspect-[4/3] overflow-hidden border-b border-paper-ink/10">
+                    {h.photos?.length ? (
+                      <div className={`absolute inset-0 grid gap-px bg-paper-ink/10 ${h.photos.length > 1 ? "grid-cols-2" : ""}`}>
+                        {h.photos.map((ph) => (
+                          <div key={ph.src} className="relative overflow-hidden">
+                            <Image
+                              src={ph.src}
+                              alt={ph.alt}
+                              fill
+                              sizes={h.photos!.length > 1 ? "(min-width:1024px) 200px, 50vw" : "(min-width:1024px) 400px, 100vw"}
+                              className="object-cover transition-transform duration-700 hover:scale-[1.03]"
+                              style={{ objectPosition: ph.position ?? "50% 50%" }}
+                            />
+                          </div>
+                        ))}
+                      </div>
                     ) : (
                       <Illustration kind={h.illustration} />
                     )}

@@ -137,9 +137,6 @@ export interface Hobby {
   title: string;
   blurb: string;
   illustration: "yarn" | "whisk" | "compass" | "speech" | "spark";
-  /** Optional photo in /public/images/personal/. */
-  photo?: string;
-  photoAlt?: string;
-  /** CSS object-position to keep the subject in frame, e.g. "50% 55%". */
-  photoPosition?: string;
+  /** Optional photos in /public/images/personal/ (one fills the card, two sit side by side). */
+  photos?: { src: string; alt: string; position?: string }[];
 }

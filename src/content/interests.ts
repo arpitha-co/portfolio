@@ -53,14 +53,28 @@ export const research: Interest[] = [
  */
 export const hobbies: Hobby[] = [
   {
-    title: "Knitting & handmade things",
+    title: "Knitting & embroidery",
     blurb: "Slow, patient work with my hands. A good counterweight to debugging robots.",
     illustration: "yarn",
+    photos: [
+      { src: "/images/personal/knitting.jpg", alt: "Pink hand-knitted round coaster", position: "50% 62%" },
+      { src: "/images/personal/embroidery.jpg", alt: "Hand embroidery of two red flowers with green leaves in a hoop", position: "50% 66%" },
+    ],
   },
   {
     title: "Baking",
     blurb: "Experimenting with recipes. Basically trial-and-error optimisation, but you get to eat the results.",
     illustration: "whisk",
+    photos: [
+      { src: "/images/personal/loaf.jpg", alt: "Home-baked chocolate-chip loaf topped with toasted coconut", position: "50% 45%" },
+      { src: "/images/personal/tart.jpg", alt: "Chocolate tart dusted with cocoa and ringed with raspberries and blueberries", position: "50% 50%" },
+    ],
+  },
+  {
+    title: "Reading",
+    blurb: "Switching off with a good book, often outdoors by the river.",
+    illustration: "spark",
+    photos: [{ src: "/images/personal/reading.jpg", alt: "Reading a book on a riverside promenade at sunset", position: "50% 62%" }],
   },
   {
     title: "Travelling",
