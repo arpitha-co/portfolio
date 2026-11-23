@@ -35,12 +35,12 @@ export const skills: SkillGroup[] = [
   {
     title: "Frameworks & Libraries",
     icon: "brain",
-    items: ["PyTorch", "scikit-learn", "spaCy", "NLTK", "NetworkX", "CVAT", "Stable-Baselines3", "Gymnasium", "NumPy"],
+    items: ["PyTorch", "scikit-learn", "XGBoost", "pandas", "spaCy", "NLTK", "NetworkX", "CVAT", "Stable-Baselines3", "Gymnasium", "NumPy"],
   },
   {
     title: "Robotics & Simulation",
     icon: "wrench",
-    items: ["ROS 2", "MoveIt", "NVIDIA Isaac Sim", "Webots", "Franka Emika Panda", "Niryo Ned2", "LabVIEW", "SolidWorks"],
+    items: ["ROS 2", "MoveIt", "NVIDIA Isaac Sim", "Webots", "Sensor fusion & particle filters", "Franka Emika Panda", "Niryo Ned2", "LabVIEW", "SolidWorks"],
   },
   {
     title: "Programming",

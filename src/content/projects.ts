@@ -310,6 +310,101 @@ export const projects: Project[] = [
     featured: true,
   },
 
+  // ---------------------------------------------------------------- Indoor localisation (EMI)
+  {
+    slug: "indoor-localization",
+    title: "Indoor Localisation with Smartphone PDR, BLE Beacons and a Particle Filter",
+    shortTitle: "Indoor Localisation: PDR + BLE Particle Filter",
+    tagline: "Tracking a walker through a building, across floors, with a phone's IMU, BLE beacons and the floor plan",
+    period: "07/2026",
+    status: "completed",
+    context: "Group project (3 people) · OTH Amberg-Weiden",
+    description:
+      "Smartphone step detection and dead reckoning fused with BLE beacons in a particle filter that respects walls and detects stair transitions between floors.",
+    problem:
+      "GPS doesn't work reliably indoors. Pedestrian dead reckoning from a phone's IMU gives a smooth path but drifts with every step; BLE beacons don't drift but their signal strength is noisy and only gives a rough position. The task was to combine both, plus the building's floor plan, to track a person walking through a university building, including a route that changes floor.",
+    approach: [
+      "We recorded four walks with a smartphone logging accelerometer, gyroscope, orientation and BLE scans, and timed when the walker passed known doors as ground truth. Each run's IMU and BLE events are put on one run-relative time axis and cleaned of invalid RSSI values and duplicates.",
+      "Steps are peaks of the de-trended acceleration magnitude above an adaptive threshold, at least 0.35 s apart. Step length follows Weinberg's model; heading comes from the phone's fused orientation, corrected with the integrated gyroscope on sharp turns.",
+      "A particle filter with 1,000 particles, each carrying its own heading bias, moves every particle by the measured step with noise. Particles that leave the walkable polygons of the floor plan get zero weight, the two strongest BLE beacons reweight the rest through a path-loss likelihood, and the filter resamples when the effective sample size drops. A staircase detector moves the particle cloud to the next floor's map.",
+    ],
+    architecture: [
+      { label: "IMU + BLE logging", detail: "Four recorded walks, timed door checkpoints" },
+      { label: "Clean & sync", detail: "Run-relative time, invalid RSSI and duplicates removed" },
+      { label: "Steps & PDR", detail: "Adaptive peak detection, Weinberg length, gyro-corrected heading" },
+      { label: "Particle filter", detail: "Map constraint, BLE likelihood, ESS resampling" },
+      { label: "Floors & evaluation", detail: "Stair detection; error at 22 checkpoints" },
+    ],
+    contribution: [
+      "Implemented step detection and the PDR motion model: adaptive-threshold peak detection, Weinberg step length and gyro-corrected heading.",
+      "Built the particle filter with BLE likelihood updates and walkable-polygon map constraints.",
+      "Worked on floor-transition detection and on RSSI filtering and beacon weighting.",
+      "Recorded the runs with the team, timed the reference checkpoints and evaluated the results.",
+    ],
+    sections: [
+      {
+        title: "Limitations",
+        items: [
+          "Heading is the weak link: magnetic interference and slow gyro drift on long straight corridors aren't fully corrected.",
+          "Two beacons per area only give a coarse absolute position; the path-loss parameters weren't calibrated per corridor.",
+          "Four runs, two phones and one building: too few to generalise across people and walking styles.",
+        ],
+      },
+    ],
+    highlights: [
+      "Smartphone PDR: step detection, Weinberg step length, gyro-corrected heading",
+      "Particle filter with floor-plan constraints and BLE likelihood",
+      "Multi-floor tracking with staircase detection",
+    ],
+    results: [
+      { value: "2.4–3.5 m", label: "RMSE on the three single-floor runs" },
+      { value: "8.0 m", label: "RMSE on the two-floor run (stair transition detected)" },
+    ],
+    resultsTable: {
+      caption: "Localisation error at manually timed door checkpoints (only the start point is given to the filter)",
+      head: ["Run", "Route", "Checkpoints", "Mean error", "RMSE"],
+      rows: [
+        ["R1", "Zig-zag, ground floor", "5", "3.26 m", "3.50 m"],
+        ["R2", "Zig-zag, reverse of R1", "5", "2.03 m", "2.40 m"],
+        ["R3", "Ground floor → stairs → first floor", "7", "6.86 m", "8.01 m"],
+        ["R4", "Straight with U-turn, first floor", "5", "2.43 m", "2.63 m"],
+        ["All", "", "22", "3.94 m", "5.11 m"],
+      ],
+    },
+    tech: ["Python", "NumPy", "pandas", "Matplotlib", "Particle filter", "Sensor fusion", "IMU", "BLE"],
+    coverVideo: video("indoor/r2", "Run R2: the particle cloud follows the walker along the ground-floor corridor", "110 / 47"),
+    demos: [
+      {
+        kind: "grid",
+        title: "Two-floor run (R3)",
+        intro: "The particle filter detects the stair transition at about 49 s and continues on the first-floor map. The error here is the largest, because heading and distance drift built up on the long corridor before the stairs.",
+        columns: 2,
+        items: [
+          { video: video("indoor/r3-floor0", "Run R3 on the ground floor, up to the staircase", "110 / 47"), label: "Ground floor", caption: "From the start to the staircase.", tone: "warn" },
+          { video: video("indoor/r3-floor1", "Run R3 on the first floor after the stair transition", "110 / 47"), label: "First floor", caption: "After the detected stair transition.", tone: "warn" },
+        ],
+      },
+      {
+        kind: "grid",
+        title: "Single-floor runs",
+        intro: "Particle-cloud animations, coloured by particle weight. Each step of the walk is one frame.",
+        columns: 2,
+        items: [
+          { video: video("indoor/r1", "Run R1: zig-zag route on the ground floor", "110 / 47"), label: "R1 · zig-zag", caption: "RMSE 3.50 m over 5 checkpoints.", tone: "ok" },
+          { video: video("indoor/r4", "Run R4: straight route with a U-turn on the first floor", "110 / 47"), label: "R4 · U-turn", caption: "RMSE 2.63 m over 5 checkpoints.", tone: "ok" },
+        ],
+      },
+    ],
+    images: [
+      { src: "/images/projects/indoor-r3-two-floors.png", alt: "Run R3: particle-filter trajectory on the ground floor and, after the stair transition, on the first floor, with checkpoints and beacons", fit: "contain" },
+      { src: "/images/projects/indoor-walkable-areas.png", alt: "Walkable polygons and staircase regions configured on both floor maps", fit: "contain" },
+      { src: "/images/projects/indoor-r1-pdr.png", alt: "Run R1: acceleration with detected steps, step length and heading over time, and the PDR-only trajectory", fit: "contain" },
+      { src: "/images/projects/indoor-r1-rssi.png", alt: "Run R1: raw BLE RSSI per beacon with a one-second trailing median", fit: "contain" },
+    ],
+    github: "https://github.com/arpitha-co/indoor-localization-pdr-ble",
+    featured: true,
+  },
+
   // ---------------------------------------------------------------- Herbarium
   {
     slug: "herbarium-detection",
@@ -452,6 +547,66 @@ export const projects: Project[] = [
     ],
     illustration: "equations",
     github: "https://github.com/arpitha-co/nlp-equation-extraction",
+    featured: true,
+  },
+
+  // ---------------------------------------------------------------- ML: XGBoost + edge rules
+  {
+    slug: "ml-regression-edge-rules",
+    title: "Skewed-Target Regression with XGBoost and an Edge-Deployable Rule Model",
+    shortTitle: "XGBoost Regression & Edge-Deployable Rules",
+    tagline: "An accurate model for a skewed target, and a four-rule model that runs without any ML library",
+    period: "12/2025 – 01/2026",
+    status: "completed",
+    context: "University project · OTH Amberg-Weiden",
+    description:
+      "Two regression tasks on an anonymised 273-feature dataset: XGBoost with sample weighting for a skewed, imbalanced target, and four if/else rules with linear formulas that reproduce a second target exactly on an edge device.",
+    problem:
+      "The dataset has 10,000 samples and 273 anonymised features, of which only a few matter. Task 1: predict a skewed, imbalanced target as accurately as possible. Task 2: predict a second target on an edge device that supports only comparisons and basic arithmetic, with no machine-learning libraries.",
+    approach: [
+      "For Task 1, the target is skewed and non-linear, with about 2.9% of samples below 0.2 and 2.9% above 1.0. I used XGBoost with a Tweedie objective and, instead of resampling, gave samples weights by target range (2.0 below 0.2, 2.5 between 0.8 and 1.0, 4.0 above 1.0), so the rare ranges count more without changing the distribution.",
+      "A first model ranked the features by importance; retraining on only the top 9 cut the test RMSE from 0.172 to 0.094.",
+      "For Task 2, a depth-2 decision tree found the split points, all on a single feature (feat_267). A linear regression inside each of the four regions gave one formula per region. The coefficients came out as clean two-decimal values with zero intercepts, which showed the rules had recovered the formula that generated the target. They were implemented in the course's edge framework using only comparisons and arithmetic.",
+    ],
+    architecture: [
+      { label: "Data analysis", detail: "Skew, imbalance and feature distributions" },
+      { label: "Weighted XGBoost", detail: "Tweedie objective, sample weights by target range" },
+      { label: "Feature selection", detail: "Importance ranking, retrain on the top 9" },
+      { label: "Split discovery", detail: "Depth-2 decision tree on feat_267" },
+      { label: "Edge rules", detail: "Four regions, one linear formula each, no ML libraries" },
+    ],
+    contribution: [
+      "Analysed the data and designed the weighting and feature-selection strategy for Task 1.",
+      "Trained and evaluated the XGBoost model and generated the submitted predictions.",
+      "Derived the Task 2 rules from a decision tree and per-region linear fits, and implemented them in the edge framework.",
+    ],
+    highlights: [
+      "XGBoost with a Tweedie objective and range-based sample weights",
+      "Feature selection from 273 to 9 features",
+      "Rule model that recovers the target formula exactly",
+    ],
+    results: [
+      { value: "0.846", label: "R² on the held-out test split (Task 1)" },
+      { value: "0.094", label: "Test RMSE (Task 1)" },
+      { value: "4 rules", label: "Reproduce Task 2's target exactly, no ML libraries" },
+    ],
+    resultsTable: {
+      caption: "Task 1 on a 20% held-out split; Task 2 on all 10,000 samples",
+      head: ["Task", "Model", "Result"],
+      rows: [
+        ["1", "XGBoost, all features", "RMSE 0.172 · R² 0.489"],
+        ["1", "XGBoost, top 9 features", "RMSE 0.094 · MAE 0.071 · R² 0.846"],
+        ["2", "4 rules + linear formulas", "Max error ≈ 1e-14 (exact)"],
+      ],
+    },
+    tech: ["Python", "XGBoost", "scikit-learn", "pandas", "NumPy", "Matplotlib", "Decision trees"],
+    images: [
+      { src: "/images/projects/ml-decision-tree.png", alt: "Depth-2 decision tree splitting feat_267 at 0.5, 0.2 and 0.7 into four regions", fit: "contain" },
+      { src: "/images/projects/ml-task1-actual-vs-predicted.png", alt: "Task 1: actual vs predicted values on the test split, close to the diagonal", fit: "contain" },
+      { src: "/images/projects/ml-top9-features.png", alt: "The nine most important features, led by feat_270", fit: "contain" },
+      { src: "/images/projects/ml-task2-actual-vs-predicted.png", alt: "Task 2: actual vs predicted values, all exactly on the diagonal", fit: "contain" },
+    ],
+    github: "https://github.com/arpitha-co/ml-regression-edge-rules",
     featured: true,
   },
 ];
