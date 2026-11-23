@@ -68,6 +68,8 @@ export const hobbies: Hobby[] = [
     photos: [
       { src: "/images/personal/loaf.jpg", alt: "Home-baked chocolate-chip loaf topped with toasted coconut", position: "50% 45%" },
       { src: "/images/personal/tart.jpg", alt: "Chocolate tart dusted with cocoa and ringed with raspberries and blueberries", position: "50% 50%" },
+      { src: "/images/personal/sponge-cake.jpg", alt: "Golden sponge cake fresh out of the tin", position: "50% 58%" },
+      { src: "/images/personal/pineapple-cake.jpg", alt: "Cream cake decorated with piped rosettes and pineapple pieces", position: "50% 45%" },
     ],
   },
   {

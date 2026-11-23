@@ -33,7 +33,7 @@ export function Beyond() {
                 <article className="flex h-full flex-col overflow-hidden rounded-2xl border border-paper-ink/10 bg-paper-2/60">
                   <div className="relative aspect-[4/3] overflow-hidden border-b border-paper-ink/10">
                     {h.photos?.length ? (
-                      <div className={`absolute inset-0 grid gap-px bg-paper-ink/10 ${h.photos.length > 1 ? "grid-cols-2" : ""}`}>
+                      <div className={`absolute inset-0 grid gap-px bg-paper-ink/10 ${h.photos.length > 1 ? "grid-cols-2" : ""} ${h.photos.length > 2 ? "grid-rows-2" : ""}`}>
                         {h.photos.map((ph) => (
                           <div key={ph.src} className="relative overflow-hidden">
                             <Image
