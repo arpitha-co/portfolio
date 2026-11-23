@@ -48,6 +48,8 @@ export default async function ProjectPage({ params }: PageProps<"/projects/[slug
   const idx = projects.findIndex((x) => x.slug === p.slug);
   const next = projects[(idx + 1) % projects.length];
   const hasResults = Boolean(p.results?.length || p.resultsTable);
+  // images[0] is already the cover unless a video or illustration takes its place.
+  const gallery = p.coverVideo || p.illustration ? p.images : p.images.slice(1);
 
   const toc = [
     { id: "problem", label: "Problem" },
@@ -56,7 +58,7 @@ export default async function ProjectPage({ params }: PageProps<"/projects/[slug
     p.demos?.length ? { id: "demos", label: "Demonstrations" } : null,
     hasResults ? { id: "results", label: "Results" } : null,
     { id: "contribution", label: "My contribution" },
-    p.images.length > 1 ? { id: "gallery", label: "Gallery" } : null,
+    gallery.length ? { id: "gallery", label: "Gallery" } : null,
   ].filter(Boolean) as { id: string; label: string }[];
 
   return (
@@ -211,10 +213,10 @@ export default async function ProjectPage({ params }: PageProps<"/projects/[slug
             ) : null}
           </Block>
 
-          {p.images.length > 1 ? (
+          {gallery.length ? (
             <Block id="gallery" title="Gallery">
               <div className="grid gap-4 sm:grid-cols-2">
-                {p.images.slice(p.coverVideo ? 0 : 1).map((img) => (
+                {gallery.map((img) => (
                   <figure key={img.src} className="overflow-hidden rounded-xl border border-line bg-ink-2">
                     <a href={img.src} target="_blank" rel="noopener noreferrer" className="relative block aspect-video" aria-label={`Open full-size image: ${img.alt}`}>
                       <Image src={img.src} alt={img.alt} fill sizes="(min-width: 640px) 440px, 100vw" className={img.fit === "contain" ? "object-contain p-4" : "object-cover"} />

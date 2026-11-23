@@ -370,7 +370,88 @@ export const projects: Project[] = [
       { label: "Structured extraction pipeline", state: "next" },
     ],
     images: [],
+    illustration: "herbarium",
     github: null,
+    featured: true,
+  },
+
+  // ---------------------------------------------------------------- NLP equation extraction
+  {
+    slug: "equation-extraction-nlp",
+    title: "Explainable Equation Extraction from Quantum Physics Papers",
+    shortTitle: "Equation Extraction from Physics Papers (NLP)",
+    tagline: "Symbols, definitions, meanings and equation relations, extracted without LLMs",
+    period: "06/2026",
+    status: "completed",
+    context: "University project · OTH Amberg-Weiden",
+    description:
+      "An LLM-free NLP pipeline that extracts numbered equations from arXiv quantum-physics papers and links each symbol to its definition in the text, names the equation and maps how equations depend on each other.",
+    problem:
+      "Equations in scientific papers are only meaningful together with the text around them: what each symbol stands for, what the equation expresses and which earlier equations it builds on. The aim was to recover that information automatically for quantum-physics papers on arXiv, without language models, so that every result can be explained and traced back to its source sentence.",
+    approach: [
+      "The pipeline works through a list of arXiv IDs until it has 350 equations (at most 7 per paper). HTML is the main source because it keeps the equation structure; when it's missing, the PDF is converted to Markdown with marker-pdf. Numbered equations such as (1), (2a), (S1) and (A.1) are detected, multi-line equations are merged, and the surrounding text is kept.",
+      "Symbols are extracted from the LaTeX with explicit rules for Greek letters, sub- and superscripts, hats, bars and vectors. Definitions are then found with spaCy and handcrafted patterns such as “Y is defined as X”. The search moves outwards from the equation: text before it, text after it, local context, global context, then definitions from earlier in the same paper, with a small dictionary of standard constants as the last resort.",
+      "To name an equation, it is masked as EQ_n (other maths as MATH), and dependency parsing finds the verb and noun phrase it is attached to. Candidates are ranked by distance, dependency relation and position.",
+      "A directed graph links the equations of each paper. Explicit references (“substituting Eq. (2)”) and a left-hand side reused in another equation count as strong relations; shared key symbols or similar context count as potential ones. Every output carries an audit trail naming the rule that produced it.",
+    ],
+    architecture: [
+      { label: "Download & parse", detail: "arXiv HTML, PDF fallback via marker-pdf; numbered equations" },
+      { label: "Symbol extraction", detail: "Rule-based LaTeX cleaning and tokenisation" },
+      { label: "Context windows", detail: "Sentence-level and section-level context" },
+      { label: "Definitions", detail: "spaCy patterns, searched from nearest to widest context" },
+      { label: "Meaning & relations", detail: "Dependency parsing; strong / potential / none graph" },
+    ],
+    contribution: [
+      "Built the full pipeline: downloading, equation parsing, symbol extraction, context windows, definition and meaning extraction, and the relation graph.",
+      "Evaluated definition extraction against 105 manually annotated symbols from 21 equations, with a script that scores coverage and precision.",
+      "Wrote the project report, including an analysis of the failure cases.",
+    ],
+    sections: [
+      {
+        title: "Limitations",
+        items: [
+          "When only the PDF is available, visually similar symbols and multi-line equations can be misread.",
+          "Equations embedded as images can't be extracted.",
+          "Recall depends on how explicitly authors define their symbols; phrasings the rules don't cover are missed.",
+        ],
+      },
+    ],
+    highlights: [
+      "Rule-based, explainable pipeline: no LLMs",
+      "spaCy dependency parsing and handcrafted definition patterns",
+      "Directed equation graph with strong / potential relations",
+    ],
+    results: [
+      { value: "350", label: "Equations from 58 arXiv papers" },
+      { value: "72.4%", label: "Definition coverage (105 annotated symbols)" },
+      { value: "69.7%", label: "Definition precision" },
+    ],
+    resultsTable: {
+      caption: "Symbol-definition evaluation against manual annotations, from the project report",
+      head: ["Metric", "Value"],
+      rows: [
+        ["Symbols examined", "105"],
+        ["Symbols resolved", "76"],
+        ["Coverage (recall)", "72.38%"],
+        ["Correct among resolved", "53"],
+        ["Precision", "69.74%"],
+      ],
+    },
+    tech: ["Python", "spaCy", "NLTK", "NetworkX", "BeautifulSoup", "PyMuPDF", "marker-pdf", "LaTeX", "Dependency parsing"],
+    images: [
+      {
+        src: "/images/projects/nlp-definition-pattern.png",
+        alt: "Definition pattern “Y is defined as X”: “flow velocity” in the text is linked to the symbol u in u = (1/m)∇S",
+        fit: "contain",
+      },
+      {
+        src: "/images/projects/nlp-relation-graph.png",
+        alt: "Equation graph for one paper: Eq. 2 and Eq. 3 both have strong relations into Eq. 4",
+        fit: "contain",
+      },
+    ],
+    illustration: "equations",
+    github: "https://github.com/arpitha-co/nlp-equation-extraction",
     featured: true,
   },
 ];

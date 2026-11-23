@@ -116,6 +116,11 @@ export interface Project {
   /** "Current research direction" paragraph on the detail page. */
   direction?: string;
   images: ProjectImage[];
+  /**
+   * Draw a labelled line illustration as the cover instead of images[0]
+   * (for projects without a suitable photo). All images then go to the gallery.
+   */
+  illustration?: "herbarium" | "equations";
   /** Set to null until a public repository exists. Never invent URLs. */
   github: string | null;
   featured: boolean;

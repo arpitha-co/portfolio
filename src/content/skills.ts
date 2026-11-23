@@ -29,12 +29,13 @@ export const skills: SkillGroup[] = [
       "CLIP",
       "OCR / Handwritten Text Recognition",
       "OpenCV",
+      "NLP & information extraction",
     ],
   },
   {
     title: "Frameworks & Libraries",
     icon: "brain",
-    items: ["PyTorch", "scikit-learn", "CVAT", "Stable-Baselines3", "Gymnasium", "NumPy"],
+    items: ["PyTorch", "scikit-learn", "spaCy", "NLTK", "NetworkX", "CVAT", "Stable-Baselines3", "Gymnasium", "NumPy"],
   },
   {
     title: "Robotics & Simulation",

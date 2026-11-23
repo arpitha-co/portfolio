@@ -23,11 +23,15 @@ export function Projects() {
             <ProjectCard project={lead} large />
           </Reveal>
         ) : null}
-        {rest.map((p, i) => (
-          <Reveal key={p.slug} delay={(i % 2) * 0.06}>
-            <ProjectCard project={p} />
-          </Reveal>
-        ))}
+        {rest.map((p, i) => {
+          // An odd card out at the end takes the full row instead of sitting alone.
+          const wide = rest.length % 2 === 1 && i === rest.length - 1;
+          return (
+            <Reveal key={p.slug} delay={(i % 2) * 0.06} className={wide ? "lg:col-span-2" : undefined}>
+              <ProjectCard project={p} large={wide} />
+            </Reveal>
+          );
+        })}
       </div>
     </Section>
   );
